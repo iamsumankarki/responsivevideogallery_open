@@ -537,3 +537,58 @@ a:active {
 		flex-direction: column;
 	}
 }
+
+/* Modal Dialog */
+.dialog {
+	overflow: hidden;
+}
+
+.dialog_modal {
+	position: relative;
+	padding: 2.5rem 2.5rem 0 0;
+	border: 0;
+	width: calc(1200px + 3rem);
+	height: auto;
+	aspect-ratio: 16 / 9;
+	background-color: transparent;
+}
+
+.dialog_modal iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.dialog_modal::backdrop {
+	background-color: rgba(0, 0, 0, 75%);
+}
+
+.close_dialog {
+	padding: calc(0.5rem - 2px);
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	border: 2px solid var(--white);
+	border-radius: 50%;
+	background-color: var(--black);
+	z-index: 3;
+	transition: background-color 300ms ease-in-out;
+}
+
+.close_dialog:focus,
+.close_dialog:hover,
+.close_dialog:active {
+	background-color: var(--white);
+}
+
+.close_dialog svg {
+	stroke: var(--white);
+	transition: stroke 300ms ease-in-out;
+}
+
+.close_dialog:focus svg,
+.close_dialog:hover svg,
+.close_dialog:active svg {
+	stroke: var(--black);
+}

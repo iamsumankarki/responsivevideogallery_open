@@ -5,6 +5,10 @@ const open = document.querySelector(".open_button");
 const dates = document.querySelectorAll("#date");
 const year = new Date().getFullYear();
 
+const dialog = document.querySelector(".dialog_modal");
+const closeModal = document.querySelector(".close_dialog");
+const backdrop = document.querySelector(".dialog_modal::backdrop");
+
 function copyright() {
 	dates.forEach((date) => {
 		date.textContent = year;
@@ -37,8 +41,25 @@ function escapeToggle() {
 	}
 }
 
+function showDialog() {
+	if (dialog) {
+		dialog.showModal();
+		body.classList.add("dialog");
+	}
+}
+
+function hideDialog() {
+	if (dialog) {
+		closeModal.addEventListener("click", () => {
+			dialog.close();
+		});
+	}
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	menuToggle();
 	escapeToggle();
 	copyright();
+	showDialog();
+	// hideDialog();
 });

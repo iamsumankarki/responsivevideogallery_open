@@ -61,5 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	escapeToggle();
 	copyright();
 	showDialog();
-	// hideDialog();
+	hideDialog();
 });

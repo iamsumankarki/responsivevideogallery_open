@@ -5,8 +5,6 @@ const open = document.querySelector(".open_button");
 const dates = document.querySelectorAll("#date");
 const year = new Date().getFullYear();
 
-const backdrop = document.querySelector(".dialog_modal::backdrop");
-
 function copyright() {
 	dates.forEach((date) => {
 		date.textContent = year;
@@ -64,7 +62,7 @@ function createDialog() {
 			// get data
 			const id = e.currentTarget.dataset.attribute;
 			const type = e.currentTarget.dataset.type;
-			console.log(id, type, title.textContent);
+			// console.log(id, type, title.textContent);
 
 			// create iframe
 			const iframe = document.createElement("iframe");
@@ -88,6 +86,13 @@ function createDialog() {
 			closeButton.addEventListener("click", () => {
 				dialog.remove();
 				body.classList.remove("dialog");
+			});
+
+			dialog.addEventListener("click", (event) => {
+				if (event.target === dialog) {
+					dialog.remove();
+					body.classList.remove("dialog");
+				}
 			});
 		});
 	});

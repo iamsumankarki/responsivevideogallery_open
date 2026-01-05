@@ -546,19 +546,22 @@ a:active {
 }
 
 .dialog_modal {
-	padding: 2.5rem 2.5rem 0 0;
+	padding: 2rem 2rem 0 0;
 	border: 0;
-	width: calc(1200px + 3rem);
+	background-color: transparent;
+}
+
+.dialog_frame {
+	width: 1200px;
+	max-width: 100%;
 	height: auto;
 	aspect-ratio: 16 / 9;
-	background-color: transparent;
 }
 
 .dialog_modal iframe {
 	display: block;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
 }
 
 .dialog_modal::backdrop {
@@ -568,8 +571,8 @@ a:active {
 .close_dialog {
 	padding: calc(0.5rem - 2px);
 	position: absolute;
-	top: 1rem;
-	right: 1rem;
+	top: 0;
+	right: 0;
 	border: 2px solid var(--white);
 	border-radius: 50%;
 	background-color: var(--black);

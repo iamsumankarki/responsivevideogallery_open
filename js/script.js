@@ -59,6 +59,11 @@ function createDialog() {
 			closeButton.innerHTML = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>';
 			dialog.insertAdjacentElement("afterbegin", closeButton);
 
+			// create iframe container
+			const container = document.createElement("div");
+			container.classList.add("dialog_frame");
+			dialog.insertAdjacentElement("beforeend", container);
+
 			// get data
 			const id = e.currentTarget.dataset.attribute;
 			const type = e.currentTarget.dataset.type;
@@ -76,7 +81,7 @@ function createDialog() {
 			} else if (type === "vimeo") {
 				// do something
 			}
-			dialog.insertAdjacentElement("beforeend", iframe);
+			container.insertAdjacentElement("beforeend", iframe);
 
 			// show modal dialog
 			dialog.showModal();

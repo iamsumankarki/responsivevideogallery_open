@@ -4,6 +4,7 @@ const open = document.querySelector(".open_button");
 
 const dates = document.querySelectorAll("#date");
 const year = new Date().getFullYear();
+
 const backdrop = document.querySelector(".dialog_modal::backdrop");
 
 function copyright() {
@@ -44,6 +45,9 @@ function createDialog() {
 		const button = video.querySelector(".play_video");
 		const title = video.querySelector(".video_title");
 		button.addEventListener("click", (e) => {
+			// make sure all dialogs are removed
+			document.querySelectorAll("dialog.dialog_modal").forEach((d) => d.remove());
+
 			// create dialog
 			const grid = document.querySelector(".grid");
 			const dialog = document.createElement("dialog");
@@ -57,17 +61,23 @@ function createDialog() {
 			closeButton.innerHTML = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>';
 			dialog.insertAdjacentElement("afterbegin", closeButton);
 
-			// create iframe
+			// get data
 			const id = e.currentTarget.dataset.attribute;
 			const type = e.currentTarget.dataset.type;
 			console.log(id, type, title.textContent);
+
+			// create iframe
 			const iframe = document.createElement("iframe");
-			iframe.setAttribute("src", `https://www.youtube.com/embed/${id}`);
-			iframe.setAttribute("title", title.textContent);
-			iframe.setAttribute("frameborder", "0");
-			iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-			iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-			iframe.setAttribute("allowfullscreen", "");
+			if (type === "youtube") {
+				iframe.setAttribute("src", `https://www.youtube.com/embed/${id}`);
+				iframe.setAttribute("title", title.textContent);
+				iframe.setAttribute("frameborder", "0");
+				iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+				iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+				iframe.setAttribute("allowfullscreen", "");
+			} else if (type === "vimeo") {
+				// do something
+			}
 			dialog.insertAdjacentElement("beforeend", iframe);
 
 			// show modal dialog

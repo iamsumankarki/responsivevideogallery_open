@@ -37,6 +37,25 @@ function escapeToggle() {
 	}
 }
 
+function toggleDark() {
+	const toggle = document.querySelector(".dark_mode");
+	toggle.addEventListener("click", () => {
+		const isDark = body.classList.toggle("dark");
+		// Check the current mode and save to localStorage
+		if (isDark) {
+			localStorage.setItem("theme", "dark");
+		} else {
+			localStorage.setItem("theme", "light");
+		}
+	});
+
+	// Apply the saved theme on page load
+	const savedTheme = localStorage.getItem("theme");
+	if (savedTheme === "dark") {
+		document.body.classList.add("dark");
+	}
+}
+
 function createDialog() {
 	const videos = document.querySelectorAll(".article");
 	videos.forEach((video) => {
@@ -108,4 +127,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	escapeToggle();
 	copyright();
 	createDialog();
+	toggleDark();
 });

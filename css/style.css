@@ -709,18 +709,18 @@ body.dark {
 	stroke: var(--white);
 }
 
-.dark .navigation .social_nav a:focus,
-.dark .navigation .social_nav a:hover,
-.dark .navigation .social_nav a:active {
+.dark .social_nav a:focus,
+.dark .social_nav a:hover,
+.dark .social_nav a:active {
 	background-color: var(--white);
 }
 
-.dark .navigation .social_nav a svg {
+.dark .social_nav a svg {
 	fill: var(--white);
 }
 
-.dark .navigation .social_nav a:focus svg,
-.dark .navigation .social_nav a:hover svg,
-.dark .navigation .social_nav a:active svg {
+.dark .social_nav a:focus svg,
+.dark .social_nav a:hover svg,
+.dark .social_nav a:active svg {
 	fill: var(--black);
 }

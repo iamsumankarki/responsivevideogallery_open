@@ -8,4 +8,4 @@
 -   add a readme file
 -   check the sections for consistent and even padding
 -   add videos to vimeo and finish js to support vimeo
--   add and style a toggle for dark mode and localStorage
+-   add and style a toggle for dark mode and localStorage done

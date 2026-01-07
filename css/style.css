@@ -152,7 +152,7 @@ a:active {
 
 .primary_logo {
 	font-size: 1.25rem;
-	width: calc(50% - 247.32px);
+	width: calc(50% - 233.455px);
 }
 
 .primary_logo a {
@@ -184,7 +184,7 @@ a:active {
 }
 
 .navigation {
-	width: calc(50% + 247.32px);
+	width: calc(50% + 233.455px);
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;

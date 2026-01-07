@@ -41,7 +41,6 @@ function toggleDark() {
 	const toggle = document.querySelector(".dark_mode");
 	toggle.addEventListener("click", () => {
 		const isDark = body.classList.toggle("dark");
-		// Check the current mode and save to localStorage
 		if (isDark) {
 			localStorage.setItem("theme", "dark");
 		} else {
@@ -49,7 +48,6 @@ function toggleDark() {
 		}
 	});
 
-	// Apply the saved theme on page load
 	const savedTheme = localStorage.getItem("theme");
 	if (savedTheme === "dark") {
 		document.body.classList.add("dark");
@@ -62,33 +60,26 @@ function createDialog() {
 		const button = video.querySelector(".play_video");
 		const title = video.querySelector(".video_title");
 		button.addEventListener("click", (e) => {
-			// make sure all dialogs are removed
 			document.querySelectorAll("dialog.dialog_modal").forEach((d) => d.remove());
 
-			// create dialog
 			const grid = document.querySelector(".grid");
 			const dialog = document.createElement("dialog");
 			dialog.classList.add("dialog_modal");
 			grid.insertAdjacentElement("afterend", dialog);
 
-			// create close button
 			const closeButton = document.createElement("button");
 			closeButton.classList.add("close_dialog");
 			closeButton.setAttribute("aria-label", "Close Video");
 			closeButton.innerHTML = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>';
 			dialog.insertAdjacentElement("afterbegin", closeButton);
 
-			// create iframe container
 			const container = document.createElement("div");
 			container.classList.add("dialog_frame");
 			dialog.insertAdjacentElement("beforeend", container);
 
-			// get data
 			const id = e.currentTarget.dataset.attribute;
 			const type = e.currentTarget.dataset.type;
-			// console.log(id, type, title.textContent);
 
-			// create iframe
 			const iframe = document.createElement("iframe");
 			if (type === "youtube") {
 				iframe.setAttribute("src", `https://www.youtube.com/embed/${id}`);
@@ -98,15 +89,15 @@ function createDialog() {
 				iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
 				iframe.setAttribute("allowfullscreen", "");
 			} else if (type === "vimeo") {
-				// do something
+				/*
+				<iframe title="vimeo-player" src="https://player.vimeo.com/video/7533229?h=3190bb59d3" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+				*/
 			}
 			container.insertAdjacentElement("beforeend", iframe);
 
-			// show modal dialog
 			dialog.showModal();
 			body.classList.add("dialog");
 
-			// remove modal dialog
 			closeButton.addEventListener("click", () => {
 				dialog.remove();
 				body.classList.remove("dialog");

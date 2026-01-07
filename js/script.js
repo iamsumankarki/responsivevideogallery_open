@@ -38,7 +38,7 @@ function escapeToggle() {
 }
 
 function toggleDark() {
-	const toggle = document.querySelector(".dark_mode");
+	const toggle = document.querySelector(".dark_mode-container");
 	toggle.addEventListener("click", () => {
 		const isDark = body.classList.toggle("dark");
 		if (isDark) {
@@ -89,9 +89,12 @@ function createDialog() {
 				iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
 				iframe.setAttribute("allowfullscreen", "");
 			} else if (type === "vimeo") {
-				/*
-				<iframe title="vimeo-player" src="https://player.vimeo.com/video/7533229?h=3190bb59d3" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
-				*/
+				iframe.setAttribute("title", title.textContent);
+				iframe.setAttribute("src", `https://player.vimeo.com/video/${id}`);
+				iframe.setAttribute("frameborder", "0");
+				iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+				iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share");
+				iframe.setAttribute("allowfullscreen", "");
 			}
 			container.insertAdjacentElement("beforeend", iframe);
 

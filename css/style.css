@@ -1,10 +1,12 @@
 :root {
 	--white: #fff;
 	--black: #222;
+	--dk-black: #333;
 	--lt-gray: #f8f8f8;
 	--gray: #eee9e9;
-	--dk-gray: #565656;
-	--purple: #a64170; /* Normal Text AA on White or Light Gray BG */
+	--dk-gray: #555;
+	--yellow: #ffdf00;
+	--purple: #8357f6; /* Normal Text AA on White or Light Gray BG */
 	--navy: #2d5273; /* Normal Text AAA on White or Light Gray BG */
 	--green: #687363; /* Normal Text AA on White or Light Gray BG */
 	--orange: #bf7e45; /* Accent Only */
@@ -565,7 +567,7 @@ a:active {
 }
 
 .dialog_modal::backdrop {
-	background-color: rgba(0, 0, 0, 75%);
+	background-color: rgba(0, 0, 0, 80%);
 }
 
 .close_dialog {
@@ -613,6 +615,7 @@ a:active {
 	border-radius: 50vh;
 	border: 2px solid var(--navy);
 	background-color: var(--white);
+	transition: background-color 300ms ease-in-out;
 }
 
 .dark_mode {
@@ -625,16 +628,18 @@ a:active {
 	transition: transform 150ms linear;
 }
 
-.mode {
-	font-family: "Montserrat", sans-serif;
-	font-optical-sizing: auto;
-	font-weight: 400;
-	font-style: normal;
-	letter-spacing: 1px;
+.light_svg svg {
+	fill: var(--yellow);
+	filter: drop-shadow(1px 1px 1px rgba(255, 223, 0, 0.4));
 }
 
-.light.mode {
-	font-weight: 700;
+.dark_svg svg {
+	fill: var(--purple);
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+}
+
+.dark .dark_mode-container {
+	background-color: var(--purple);
 }
 
 .dark .dark_mode {
@@ -646,16 +651,8 @@ body.dark {
 	background-color: var(--black);
 }
 
-.dark .light.mode {
-	font-weight: 400;
-}
-
-.dark .dark.mode {
-	font-weight: 700;
-}
-
 .dark .gray_section {
-	background-color: var(--dk-gray);
+	background-color: var(--dk-black);
 }
 
 .dark a {
@@ -723,4 +720,10 @@ body.dark {
 .dark .social_nav a:hover svg,
 .dark .social_nav a:active svg {
 	fill: var(--black);
+}
+
+@media (max-width: 1024px) {
+	.wrap:has(.dark_mode-container) {
+		justify-content: center;
+	}
 }

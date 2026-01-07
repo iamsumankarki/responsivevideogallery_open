@@ -126,7 +126,7 @@ a:active {
 }
 
 .section {
-	padding: 3rem 1rem;
+	padding: 3rem 1rem 3.5rem;
 }
 
 .wrap {
@@ -416,6 +416,10 @@ a:active {
 }
 
 /* Gallery */
+.gallery_section {
+	padding: 0 1rem 3.5rem;
+}
+
 .gallery_section h2 {
 	text-align: center;
 	margin: 0 0 3rem;
@@ -482,6 +486,10 @@ a:active {
 }
 
 @media (max-width: 1024px) {
+	.gallery_section h2 {
+		margin: 0 0 1rem;
+	}
+
 	.gallery_section .wrap {
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
@@ -518,7 +526,6 @@ a:active {
 
 .gray_section p,
 .white_section p {
-	margin: 0 0 2rem;
 	font-size: clamp(1rem, 2vw, 1.25rem);
 	line-height: 1.85;
 }
@@ -724,6 +731,7 @@ body.dark {
 
 @media (max-width: 1024px) {
 	.wrap:has(.dark_mode-container) {
+		padding: 1rem;
 		justify-content: center;
 	}
 }

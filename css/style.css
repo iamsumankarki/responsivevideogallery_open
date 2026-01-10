@@ -555,9 +555,9 @@ a:active {
 }
 
 .dialog_modal {
-	padding: 2rem 2rem 0 0;
 	border: 0;
 	background-color: transparent;
+	max-width: min(100%, 150vh);
 }
 
 .dialog_frame {

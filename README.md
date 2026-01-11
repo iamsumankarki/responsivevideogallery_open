@@ -1,6 +1,6 @@
 # The New Responsive Video Gallery 📺
 
-In November 2013 I deployed the [original version](https://github.com/angelajholden/responsivevideogallery) of Responsive Video Gallery. The gallery used CSS floats and the modal dialog was built with jQuery and Fancybox. Twelve years later the gallery has been update to use CSS Grid, and the modal dialog has been replace by 59 lines of vanilla JavaScript. Enjoy! ♥️
+In November 2013 I deployed the [original version](https://github.com/angelajholden/responsivevideogallery) of Responsive Video Gallery. The old gallery used CSS floats, and the modal window was built with jQuery and Fancybox. Twelve years later the gallery has been updated with CSS Grid, and the jQuery has been replaced with 59 lines of vanilla JavaScript. Enjoy! ♥️
 
 ## The HTML
 

@@ -152,9 +152,10 @@ Next are styles for the `<dialog>` that holds the video `<iframe>`. The markup f
 
 /* dialog element */
 .dialog_modal {
-	padding: 2rem 2rem 0 0;
+	padding: 1.5rem;
 	border: 0;
 	background-color: transparent;
+	max-width: min(100%, 150vh);
 }
 
 /* iframe container for styling */

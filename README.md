@@ -1,6 +1,6 @@
-# Responsive Video Gallery
+# The New Responsive Video Gallery - Updated January 2026
 
-With semantic HTML, CSS Grid and vanilla JavaScript, create a responsive video gallery with videos from YouTube and Vimeo.
+In December 2013 I deployed the original version of Responsive Video Gallery. The gallery used CSS floats and the modal dialog was built with jQuery and Fancybox. Twelve years later the gallery has been update to use CSS Grid, and the modal dialog has been replace by 59 lines of vanilla JavaScript. Enjoy! ♥️
 
 ## The HTML
 

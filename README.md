@@ -214,83 +214,84 @@ Next are styles for the `<dialog>` that holds the video `<iframe>`. The markup f
 ```javascript
 // wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
-	// build an array of all videos
-	const videos = document.querySelectorAll(".article");
+	// define the grid
+	const grid = document.querySelector(".grid");
+	if (!grid) return;
 
-	// loop through the videos
-	videos.forEach((video) => {
+	// click event for the grid
+	grid.addEventListener("click", (e) => {
 		// define play button + video title
-		const button = video.querySelector(".play_video");
-		const title = video.querySelector(".video_title");
+		const button = e.target.closest(".play_video");
+		if (!button) return;
 
-		// click event for the button
-		button.addEventListener("click", (e) => {
-			// make sure all dialogs are removed
-			document.querySelectorAll("dialog.dialog_modal").forEach((d) => d.remove());
+		const article = button.closest(".article");
+		const title = article.querySelector(".video_title");
 
-			// create dialog element
-			const grid = document.querySelector(".grid");
-			const dialog = document.createElement("dialog");
-			dialog.classList.add("dialog_modal");
-			// insert dialog element
-			grid.insertAdjacentElement("afterend", dialog);
+		// make sure all dialogs are removed
+		document.querySelectorAll("dialog.dialog_modal").forEach((d) => d.remove());
 
-			// create close button
-			const closeButton = document.createElement("button");
-			closeButton.classList.add("close_dialog");
-			closeButton.setAttribute("aria-label", "Close Video");
-			closeButton.innerHTML = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/>';
-			// inset close button
-			dialog.insertAdjacentElement("afterbegin", closeButton);
+		// create dialog element
+		const dialog = document.createElement("dialog");
+		dialog.classList.add("dialog_modal");
+		// insert dialog element
+		grid.insertAdjacentElement("afterend", dialog);
 
-			// create iframe container
-			const container = document.createElement("div");
-			container.classList.add("dialog_frame");
-			// insert iframe container
-			dialog.insertAdjacentElement("beforeend", container);
+		// create close button
+		const closeButton = document.createElement("button");
+		closeButton.classList.add("close_dialog");
+		closeButton.setAttribute("aria-label", "Close Video");
+		closeButton.innerHTML = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/>';
+		// insert close button
+		dialog.insertAdjacentElement("afterbegin", closeButton);
 
-			// get data attributes
-			const id = e.currentTarget.dataset.attribute;
-			const type = e.currentTarget.dataset.type;
+		// create iframe container
+		const container = document.createElement("div");
+		container.classList.add("dialog_frame");
+		// insert iframe container
+		dialog.insertAdjacentElement("beforeend", container);
 
-			// create iframe element
-			const iframe = document.createElement("iframe");
-			if (type === "youtube") {
-				iframe.setAttribute("src", `https://www.youtube.com/embed/${id}`);
-				iframe.setAttribute("title", title.textContent);
-				iframe.setAttribute("frameborder", "0");
-				iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-				iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-				iframe.setAttribute("allowfullscreen", "");
-			} else if (type === "vimeo") {
-				// vimeo
-			}
-			// insert iframe
-			container.insertAdjacentElement("beforeend", iframe);
+		// get data attributes
+		const id = button.dataset.attribute;
+		const type = button.dataset.type;
 
-			// show modal dialog + add body class
-			dialog.showModal();
-			body.classList.add("dialog");
+		// create iframe element
+		const iframe = document.createElement("iframe");
+		iframe.setAttribute("title", title.textContent);
+		iframe.setAttribute("frameborder", "0");
+		iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+		iframe.setAttribute("allowfullscreen", "");
+		if (type === "youtube") {
+			iframe.setAttribute("src", `https://www.youtube.com/embed/${id}`);
+			iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+		} else if (type === "vimeo") {
+			iframe.setAttribute("src", `https://player.vimeo.com/video/${id}`);
+			iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share");
+		}
+		// insert iframe
+		container.insertAdjacentElement("beforeend", iframe);
 
-			// remove modal dialog + remove body class
-			closeButton.addEventListener("click", () => {
+		// show modal dialog + add body class
+		dialog.showModal();
+		body.classList.add("dialog");
+
+		// remove modal dialog + remove body class
+		closeButton.addEventListener("click", () => {
+			dialog.remove();
+			body.classList.remove("dialog");
+		});
+
+		// click backdrop to close dialog
+		dialog.addEventListener("click", (event) => {
+			if (event.target === dialog) {
 				dialog.remove();
 				body.classList.remove("dialog");
-			});
-
-			// click backdrop to close dialog
-			dialog.addEventListener("click", (event) => {
-				if (event.target === dialog) {
-					dialog.remove();
-					body.classList.remove("dialog");
-				}
-			});
+			}
 		});
 	});
 });
 ```
 
-This is an example `<dialog>` element that's created and added to the DOM with JavaScript:
+This is an example `<dialog>` element for YouTube that's created and added to the DOM with JavaScript:
 
 ```html
 <dialog class="dialog_modal" open="">
